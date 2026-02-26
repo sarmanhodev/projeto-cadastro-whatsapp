@@ -1,4 +1,4 @@
-# projeto-cadastro-whatsapp# 📋 Sistema de Cadastro de Pessoas com WhatsApp
+#📋 Sistema de Cadastro de Pessoas com WhatsApp
 
 Projeto **fullstack simples** desenvolvido com **Flask (Python)** no backend e **Vue.js 3** no frontend, voltado para **cadastro de pessoas**, **envio de mensagens via WhatsApp** e **visualização do histórico de mensagens enviadas para cada pessoa**.
 

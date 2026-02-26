@@ -15,7 +15,10 @@ class Alunos(db.Model, UserMixin):
     cpf = db.Column(db.String(50), unique=True, nullable=True)
 
     mensagens = db.relationship(
-        "Mensagens", back_populates="aluno", order_by="desc(Mensagens.datahora_envio)"
+        "Mensagens",
+        back_populates="aluno",
+        order_by="desc(Mensagens.datahora_envio)",
+        cascade="all, delete-orphan",
     )
 
 

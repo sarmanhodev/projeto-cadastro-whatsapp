@@ -21,7 +21,7 @@ app.jinja_env.variable_end_string = "]]"
 CORS(app)  # Habilita CORS globalmente para todas as rotas
 app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {"pool_pre_ping": True}
 app.config["SQLALCHEMY_DATABASE_URI"] = (
-    "postgresql://postgres:sarmanho90@localhost:5433/alunos_db"
+    "postgresql://postgres:[SENHA_DATABASE]@localhost:[PORTA]/[DATABASE_NAME]"
 )
 
 app.config["SECRET_KEY"] = "secret"
@@ -348,3 +348,4 @@ def salvar_mensagem():
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
+

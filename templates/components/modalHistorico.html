@@ -1,0 +1,37 @@
+<div class="modal fade" id="modalHistorico" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered  modal-dialog-scrollable">
+        <div class="modal-content">
+
+            <div class="modal-header bg-success">
+                <h5 class="modal-title text-light text-uppercase">
+                    <i class="fa-brands fa-whatsapp"></i> Histórico mensagem
+                </h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <div v-if="carregandoMensagens" class="text-center">
+                    Carregando mensagens...
+                </div>
+
+                <ul v-else class="list-group">
+                    <li v-for="msg in historico_mensagens" :key="msg.id" class="list-group-item">
+                        <div>{{ msg.mensagem }}</div>
+                        <small class="text-muted">{{ msg.datahora_envio }}</small>
+                    </li>
+
+                    <li v-if="historico_mensagens.length === 0" class="list-group-item text-center">
+                        Nenhuma mensagem enviada.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">
+                    Sair
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

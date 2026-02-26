@@ -1,0 +1,38 @@
+<!-- Modal Excluir -->
+<div class="modal fade" id="modalExcluirCadastro" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header bg-danger text-light">
+                <h5 class="modal-title">
+                    <i class="fa-solid fa-user-minus"></i> Excluir Cadastro
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body text-center">
+                <p class="fs-4">
+                    Deseja realmente excluir o registro do aluno
+                    <strong class="text-danger text-uppercase">
+                        {{ nomeAluno }}
+                    </strong>?
+                </p>
+
+                <p class="text-muted mb-0">
+                    Atenção! Esta ação não poderá ser desfeita!
+                </p>
+            </div>
+
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+
+                <button @click="excluirRegistro" class="btn btn-danger">
+                    <i class="fa-solid fa-trash-can"></i> Excluir
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

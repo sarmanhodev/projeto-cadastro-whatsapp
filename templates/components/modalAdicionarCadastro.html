@@ -1,0 +1,107 @@
+<!-- Modal -->
+<div class="modal fade " id="modalAdicionarCadastro" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header text-light" :class="modoEdicao ? 'bg-primary' : 'bg-warning'">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    <i class="fa-solid " :class="modoEdicao ? 'fa-user-pen' : 'fa-user-plus'"></i>
+                    {{ modoEdicao ? 'Atualizar Cadastro' : 'Novo Cadastro' }}
+
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" v-model="nomeAluno" @blur="tocado.nomeAluno = true"
+                                class="form-control text-uppercase" :class="{
+                                                                                                'is-invalid': erros.nomeAluno,
+                                                                                                'is-valid': !erros.nomeAluno && nomeAluno
+                                                                                            }" id="nomeAluno"
+                                placeholder="Nome">
+                            <label for="nomeAluno">Nome</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-floating mb-3">
+                            <input type="text" v-model="cpfAluno" @input="cpfAluno = formatarCPF(cpfAluno)"
+                                class="form-control" :class="{
+        'is-invalid': erros.cpfAluno,
+        'is-valid': !erros.cpfAluno && cpfAluno
+    }" id="cpfAluno" placeholder="CPF">
+                            <small class="text-muted">⚠️ Somente números</small>
+                            <label for="cpfAluno">CPF</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-md-4">
+                        <div class="form-floating mb-3">
+                            <input type="email" v-model="emailAluno" @input="emailAluno = formatarEmail(emailAluno)"
+                                class="form-control" :class="{
+        'is-invalid': erros.emailAluno,
+        'is-valid': !erros.emailAluno && emailAluno
+    }" placeholder="email@exemplo.com">
+                            <small v-if="emailAluno && !validarEmail(emailAluno)" class="text-danger">
+                                ❌ Email inválido
+                            </small>
+
+                            <small v-if="emailAluno && validarEmail(emailAluno)" class="text-success">
+                                ✅ Email válido
+                            </small>
+                            <label for="emailAluno">Email</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-floating mb-3">
+                            <input type="text" v-model="telefoneAluno"
+                                @keyup="telefoneAluno = formatarTelefone(telefoneAluno)" class="form-control" :class="{
+        'is-invalid': erros.telefoneAluno,
+        'is-valid': !erros.telefoneAluno && telefoneAluno
+    }" id="telefoneAluno" placeholder="Telefone">
+                            <label for="telefoneAluno">Telefone</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-md-2">
+                        <div class="form-floating mb-3">
+                            <input @change="calcularIdade" @keyup="calcularIdade" v-model="dataNascimento"
+                                v-model="dataNascimento" type="date" class="form-control" :class="{
+        'is-invalid': erros.dataNascimento,
+        'is-valid': !erros.dataNascimento && dataNascimento
+    }" id="dataNascimento">
+                            <label for="dataNascimento">Data Nascimento</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-floating mb-3">
+                            <input type="text" :value="idade" readonly class="form-control" :class="{
+        'is-invalid': erros.idade,
+        'is-valid': !erros.idade && idade
+    }" id="idadeAluno">
+                            <label for="idadeAluno">Idade</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</button>
+
+                    <button @click="enviarDados" class="btn" :class="modoEdicao ? 'btn-primary' : 'btn-warning'">
+                        <i class="fa-solid " :class="modoEdicao ? 'fa-pen-to-square' : 'fa-floppy-disk'"></i>
+                        {{ modoEdicao ? 'Atualizar' : 'Salvar' }}
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
